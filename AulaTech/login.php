@@ -1,4 +1,4 @@
-<?php session_start();
+<?php
 require __DIR__ . '/includes/header.php';
 require __DIR__ . '/includes/connection.php';
 require __DIR__ . '/includes/queri.php';
@@ -18,7 +18,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $_SESSION["userId"] = $user["id"];
       $_SESSION["role"] = $user["role"];
 
-      echo "<script>window.location.href = 'index.php';</script>";
+      echo "<script>window.location.href = 'articles.php';</script>";
     }else{
       $error = "Credenciales incorrectas.";
     }

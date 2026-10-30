@@ -1,4 +1,12 @@
-<?php session_start()?>
+<?php session_start();
+
+if(isset($_GET["logout"])){
+  $_SESSION = [];
+  session_destroy();
+  header("Location:", "index.php");
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -39,7 +47,8 @@
           </li>
 
           <!-- Opciones solo para administradores -->
-           <?php if($_SESSION["role"] == "admin"){ ?>
+
+           <?php if(isset($_SESSION["role"]) && $_SESSION["role"] == "admin"){ ?>
           <li class="nav-item">
             <a class="nav-link" href="articleForm.php">Añadir artículo</a>
           </li>
@@ -53,8 +62,7 @@
           <button type="submit" class="btn btn-outline-light">Iniciar sesion</button>
         </form>
         <?php }else{ ?>
-         <button type="submit" name="logout" class="btn btn-outline-light"> Cerrar Sesion</button>
-        <?php }?>
+        <a href="index.php?logout=1" class="btn btn-outline-light">Cerrar sesión</a>        <?php }?>
       </div>
     </div>
   </nav>
