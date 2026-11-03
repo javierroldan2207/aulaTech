@@ -4,7 +4,7 @@ require __DIR__ . "/includes/connection.php";
 require __DIR__ . "/includes/queri.php";
 
 $id = (int) $_SESSION["userId"];
-$userDetail = getUser($connection, $id);
+$userDetail = getUserById($connection, $id);
 ?>
 
 <!DOCTYPE html>
@@ -33,16 +33,16 @@ $userDetail = getUser($connection, $id);
                 <!-- Lista con una fila por cada dato -->
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
-                        <strong>Id:</strong> 1
+                        <strong>Nombre de usuario:</strong> <?php echo $userDetail["username"] ?>
                     </li>
                     <li class="list-group-item">
-                        <strong>Nombre de usuario:</strong> <?php echo $userDetail["name"] ?>
+                        <strong>Nombre completo:</strong> <?php echo $userDetail["full_name"] ?>
                     </li>
                     <li class="list-group-item">
-                        <strong>Nombre completo:</strong> Javier Roldán
+                        <strong>Email:</strong> <?php echo $userDetail["email"] ?>
                     </li>
                     <li class="list-group-item">
-                        <strong>Email:</strong> javier@email.com
+                        <strong>Rol:</strong> <?php echo $userDetail["role"] ?>
                     </li>
                 </ul>
 

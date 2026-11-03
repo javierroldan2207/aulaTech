@@ -23,3 +23,10 @@ function getArticleById($connection, $id){
     $article = $statement->fetch(PDO::FETCH_ASSOC);
     return $article;
 }
+
+function getUserById($connection, $id){
+    $statement = $connection->prepare("SELECT id, username, full_name, email, role FROM users WHERE id = :id");
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}

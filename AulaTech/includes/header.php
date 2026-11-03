@@ -42,9 +42,11 @@ if(isset($_GET["logout"])){
           <li class="nav-item">
             <a class="nav-link" href="articles.php">Ver artículos</a>
           </li>
+          <?php if(isset($_SESSION["userId"])) {?>
           <li class="nav-item">
             <a class="nav-link" href="profile.php">Ver mis datos</a>
           </li>
+          <?php } ?>
 
           <!-- Opciones solo para administradores -->
 
