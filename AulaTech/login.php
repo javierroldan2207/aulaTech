@@ -33,7 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <h1 class="h3 mb-4 text-center">Iniciar sesión</h1>
 
     <form action="login.php" method="post">
-
+     <?php if($error != null){ ?>
+      <alert class="alert alert-danger"><?php echo $error ?></alert>
+      <?php } ?>
       <div class="form-group">
         <label for="username">Usuario</label>
         <input type="text" class="form-control" id="username" name="username"

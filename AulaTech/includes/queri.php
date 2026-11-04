@@ -20,9 +20,9 @@ function getArticleById($connection, $id){
     $statement = $connection->prepare("SELECT id, name, description, category, price, stock FROM articles WHERE id = :id");
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
-    $article = $statement->fetch(PDO::FETCH_ASSOC);
-    return $article;
+    return $statement->fetch(PDO::FETCH_ASSOC);
 }
+
 
 function getUserById($connection, $id){
     $statement = $connection->prepare("SELECT id, username, full_name, email, role FROM users WHERE id = :id");
@@ -30,3 +30,14 @@ function getUserById($connection, $id){
     $statement->execute();
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
+
+function addArticle($connection, $name, $description, $category, $price, $stock){
+    $statement = $connection->prepare("INSERT INTO articles (name, description, category, price, stock) VALUES (:name, :description, :category, :price, :stock)");
+    $statement->bindParam(':name', $name);
+    $statement->bindParam(':description', $description);
+    $statement->bindParam(':category', $category);
+    $statement->bindParam(':price', $price);
+    $statement->bindParam(':stock', $stock);
+    return $statement->execute();
+}
+

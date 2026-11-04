@@ -22,7 +22,7 @@ require __DIR__ . '/includes/header.php';
         <th>Nombre</th>
         <th>Categoría</th>
         <th class="text-right">Precio</th>
-        <th class="text-right">Existencias</th>
+        <th class="text-left">Existencias</th>
         <th>Info</th>
       </tr>
     </thead>
