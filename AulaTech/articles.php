@@ -20,6 +20,9 @@ require __DIR__ . '/includes/header.php';
         <th class="text-right">Precio</th>
         <th class="text-right">Existencias</th>
         <th>Info</th>
+        <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === "admin"){ ?>
+        <th>Modificar</th>
+        <?php } ?>
       </tr>
     </thead>
 
@@ -33,6 +36,10 @@ require __DIR__ . '/includes/header.php';
         <td><?php echo number_format($article["price"], 2, ",", ".") ?>€</td>
         <td><?php echo $article["stock"] ?></td>
         <td><a href="detail.php?id=<?php echo $article["id"]?>" class="btn btn-sm btn-outline-primary">Detalles</a></td>
+        <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === "admin"){ ?>
+        <td><a href="articleForm.php?id=<?php echo $article["id"]?>" class="btn btn-sm btn-outline-primary">Editar</a></td>
+        <?php } ?>
+        <form method="post"><button type="submit">Eliminar</button></form>
       </tr>
       <?php } ?>
     </tbody>
