@@ -38,8 +38,14 @@ require __DIR__ . '/includes/header.php';
         <td><a href="detail.php?id=<?php echo $article["id"]?>" class="btn btn-sm btn-outline-primary">Detalles</a></td>
         <?php if(isset($_SESSION["role"]) && $_SESSION["role"] === "admin"){ ?>
         <td><a href="articleForm.php?id=<?php echo $article["id"]?>" class="btn btn-sm btn-outline-primary">Editar</a></td>
+        <td>
+          <form action="delete.php" method="post">
+          <input type="hidden" name="id" value="<?php echo (int) $article["id"] ?>">
+          <button type="submit">Eliminar</button>
+          </form>
+        </td>
         <?php } ?>
-        <form method="post"><button type="submit">Eliminar</button></form>
+        
       </tr>
       <?php } ?>
     </tbody>

@@ -41,3 +41,20 @@ function addArticle($connection, $name, $description, $category, $price, $stock)
     return $statement->execute();
 }
 
+function updateArticle($connection, $id, $name, $description, $category, $price, $stock){
+    $statement = $connection->prepare("UPDATE articles SET name = :name, description = :description, category = :category, price = :price, stock = :stock WHERE id = :id");
+    $statement->bindParam(':name', $name);
+    $statement->bindParam(':description', $description);
+    $statement->bindParam(':category', $category);
+    $statement->bindParam(':price', $price);
+    $statement->bindParam(':stock', $stock);
+    $statement->bindParam(':id', $id);
+    return $statement->execute();
+}
+
+function deleteArticle($connection, $id){
+    $statement = $connection->prepare("DELETE FROM articles WHERE id = :id");
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
+    return $statement->rowCount();
+}

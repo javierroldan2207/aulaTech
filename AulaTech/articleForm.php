@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors["description"] = "La descripcion es demasiado larga.";
     }
 
-    if((int) $article["stock"] <= 0){
+    if((int) $article["stock"] < 0){
         $errors["stock"] = "Cantidad de stock erronea.";
     }elseif((int) $article["stock"] > MAXSTOCK){
         $errors["stock"] = "Cantidad de articulos incorrectas.";
@@ -93,6 +93,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if($article["category"] === ""){
         $errors["category"] = "La categoria es obligatoria.";
+    }
+
+    if (empty($errors)) {
+
+        if ($isEdit) {
+            updateArticle(
+                $connection, $id,
+                $article["name"], $article["description"], $article["category"],
+                $article["price"], $article["stock"]
+            );
+            $_SESSION["message"] = "Artículo modificado correctamente.";
+        } else {
+            addArticle(
+                $connection,
+                $article["name"], $article["description"], $article["category"],
+                $article["price"], $article["stock"]
+            );
+            $_SESSION["message"] = "Artículo añadido correctamente.";
+        }
+
+        header("Location: articles.php");
     }
 
     
